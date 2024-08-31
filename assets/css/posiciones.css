@@ -1,0 +1,88 @@
+.active {
+    background-color: #b8c816 !important;
+}
+
+.table {
+    color: var(--light);
+}
+
+.cabezalModalidad {
+    background-color: #2c3034;
+}
+
+.logotipo_Equipo {
+    height: 2.5rem;
+}
+
+.table>:not(caption)>*>* {
+    padding: 0.3rem 0.5rem;
+}
+
+.tituloHeadModalidad {
+    color: var(--dark);
+    font-weight: 500;
+    background-color: #dcef21 !important;
+    padding: 1.1rem 0.5rem !important;
+    font-size: 1.3rem;
+}
+
+table tbody tr th,
+table tbody tr td {
+    vertical-align: middle;
+}
+
+.contenedorTabla {
+    padding-top: 1.5rem;
+}
+
+#contendor-carga,
+#contenedor-sindatos {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor-sindatos {
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    margin: -25px 0 0 -25px;
+    width: 100px;
+    height: 100px;
+}
+
+.spinner .path {
+    stroke: #606060;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}

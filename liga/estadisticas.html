@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="siteTitle">Estadísticas - </title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-elements.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-elements.css">
+    <link rel="stylesheet" href="/assets/css/estadisticas.css">
+</head>
+
+<body>
+    <nav id="liga-deportiva-nav"></nav>
+    <div id="sidenav-menu" class="sidenav"></div>
+
+    <div class="container-fluid">
+        <div class="wrapper--seccion">
+            <div class="separador">
+                <div style="display: flex;">
+
+                    <span id="titulo-seccion">Estadísticas</span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="separador-hr">
+
+
+        <div id="contenedor-general">
+
+            <div id="contenedor-seleccion">
+                <button id="btnModo_Jugador" type="button" class="clearBtn btnActivo">Jugador</button>
+                <button id="btnModo_Equipo" type="button" class="clearBtn">Equipo</button>
+            </div>
+
+            <div id="contenedor-seleccion-rol">
+                <button id="btnFiltro_Bateo" type="button" class="clearBtn rolActivo">Bateo</button>
+                <button id="btnFiltro_Pitcheo" type="button" class="clearBtn">Pitcheo</button>
+            </div>
+
+            <div id="contenedor-filtros">
+                <div class="dropdown">
+                    <button id="dropdownTemporada" class="btn clearBtn btnFiltro dropdown-toggle" value="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Temporada
+                    </button>
+                    <ul id="menu-temporada" class="dropdown-menu">
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button id="dropdownCategoria" class="btn clearBtn btnFiltro dropdown-toggle" value="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Modalidad
+                    </button>
+                    <ul id="menu-categoria" class="dropdown-menu">
+
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button id="dropdownEquipo" class="btn clearBtn btnFiltro dropdown-toggle" value="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Equipo
+                    </button>
+                    <ul id="menu-equipo" class="dropdown-menu" style="height: 35rem; overflow-y:scroll;">
+
+                    </ul>
+                </div>
+
+                <div>
+                    <button id="btnRestablecer" class="btn clearBtn btnFiltro hide" type="button">
+                        Restablecer
+                      </button>
+                </div>
+
+
+            </div>
+
+            <div id="contenedor-tablas">
+                <div id="tabla-mobile" class="table-responsive-sm">
+                    <table id="tabla-mobile-bateo" class="table table-striped table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Jugador</th>
+                                <th scope="col">AVG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-mobile-bateo"></tbody>
+                    </table>
+
+                    <table id="tabla-mobile-pitcheo" class="table table-striped table-dark hide">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Jugador</th>
+                                <th scope="col">ERA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-mobile-pitcheo"></tbody>
+                    </table>
+                </div>
+
+                <div id="tabla-pc" class="table-responsive-sm">
+                    <table id="tabla-pc-bateo" class="table table-sm table-striped table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th id="col-jugador-pc" scope="col">Jugador</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Juegos Jugados">JJ</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Turnos Totales">TT</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Turnos Legales">TL</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hits Totales">HT</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sencillos">H1</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Dobles">H2</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Triples">H3</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jonron de Campo">H4</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jonron">HR</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Carreras Anotadas">RUNS</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bolas Ocupadas">B.O.</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Golpes">G</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sacrificio">S</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bases Por Bolas">B.B.</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ponches">K</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Porcentaje de Bateo">AVG</a></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-pc-bateo"></tbody>
+                    </table>
+
+                    <table id="tabla-pc-pitcheo" class="table table-sm table-striped table-dark table-hover hide">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Jugador</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Juegos Jugados">JJ</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ganados">W</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Perdidos">L</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Innings Lanzados">IP</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title=".">BT</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hits Totales">HT</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Jonrones Admitidos">HR</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bases por Bolas">BB</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ponches">K</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Golpes">G</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Carreras Permitidas Totales">CP</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Carreras Limpias Admitidas">CL</a></th>
+                                <th scope="col"><a href="javascript:void(0)" class="helperTooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Efectividad">ERA</a></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-pc-pitcheo"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="contenedor-cargar-contenido">
+                <button id="btnCargarMasDatos" type="button" class="btn clearBtn btnFiltro">
+                    Cargar mas
+                  </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer id="liga-deportiva-footer" class="liga--footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="/assets/js/liga-deportiva-nav.js"></script>
+    <script type="module" src="/assets/js/estadisticas.js"></script>
+</body>
+
+</html>

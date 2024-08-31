@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+    <!-- Ionic icons -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-dashboard.css">
+    <link rel="stylesheet" href="/assets/css/programacionJuegos.css">
+
+    <title>Programación de juegos - Comité Municipal de Softbol de Ahome</title>
+
+    <style>
+        .gallery {
+            display: flex;
+            margin-top: 15px;
+            width: 100%;
+            position: relative;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        figure {
+            width: 15%;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .figureUploaded {
+            position: relative;
+        }
+
+        .figureUploaded .deleteImg {
+            position: absolute;
+            display: flex;
+            font-size: 28px;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            top: 0px;
+            right: 0px;
+            z-index: 100;
+            cursor: pointer;
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--danger);
+            border-color: transparent;
+        }
+
+        .figureUploaded .deleteImg:focus {
+            border-color: transparent !important;
+            outline: none;
+        }
+
+        .figureUploaded .deleteImg i {
+            color: #fff;
+        }
+
+        .fa-circle {
+            color: var(--danger);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="bg-primary"></div>
+        <!-- Fin sidebar -->
+
+        <div class="w-100">
+
+            <!-- Navbar -->
+            <nav id="navbar-dashboard" class="navbar navbar-expand-lg navbar-light bg-light border-bottom"></nav>
+            <!-- Fin Navbar -->
+
+            <!-- Contenido -->
+            <div id="content" class="bg-grey w-100">
+
+                <section class="bg-light py-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8">
+                                <h1 class="font-weight-bold mb-0">Programación de Juegos</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ld_principal">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <div class="card-header bg-light"
+                                        style="display:flex;align-items:center; justify-content: space-between;">
+                                        <div>
+                                            <button type="button" id="btn_nuevo"
+                                                class="btn btnDashboard btnDashboard-primary"
+                                                style="margin-right:8px;">Nuevo registro</button>
+                                            <button type="button" id="btn_filtro" onclick="filtroProgramacion();"
+                                                class="btn btnDashboard btnDashboard-primary"
+                                                style="margin-right:8px;"><i class="fas fa-filter"></i> Filtro</button>
+                                        </div>
+
+                                        <div>
+                                            <button type="button" id="btn_abrirExportar" onclick="abrirModalExportar();"
+                                                class="btn btnDashboard btnDashboard-primary"
+                                                style="margin-right:8px;"><i class="fas fa-file-export"></i> Generar
+                                                Reporte</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="ld_contenedor_tabla"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg my-3" style="display:flex; justify-content:center;">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination" id="ld_paginacion">
+
+                                        <li class="page-item"><button type="button" class="page-link"
+                                                aria-label="Previous" id="btn_previo"><span
+                                                    aria-hidden="true">Anterior</span></button></li>
+                                        <li class="page-item"><button type="button" id="btn_siguiente" class="page-link"
+                                                aria-label="Next"><span aria-hidden="true">Siguiente</span></button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="seccion_ld_formulario" class="hide">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <div class="card-header bg-light" style="display:flex;align-items:center;">
+
+                                        <h6 id="titulo-formulario" class="font-weight-bold mb-0"></h6>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form method="POST" id="ld_formulario">
+
+                                            <div class="mb-3">
+
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="input_nombre" maxlength="255"
+                                                            class="form-label">Nombre</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Insertar nombre de la programación..."
+                                                            id="input_nombre" required>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="input_contenido"
+                                                            class="form-label">Temporada</label>
+                                                        <select id="selectTemporada" class="form-control">
+                                                            <option value="" disabled selected>Seleccionar Temporada...
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h2>Programación</h2>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-12" style="display:flex;">
+                                                        <button type="button" style="width: 20rem; margin-right:10px;"
+                                                            class="btn btnDashboard btnDashboard-primary"
+                                                            id="btnAgregarCategoria">Agregar categoría</button>
+                                                        <button type="button" style="width: 20rem;"
+                                                            class="btn btnDashboard btnDashboard-primary"
+                                                            id="btnCalendarizar">Calendarizar</button>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div id="wrapperTablasProgramacion" class="table-responsive"></div>
+
+                                            <div class="float-right">
+                                                <button type="button" id="btnFormulario_regresar"
+                                                    class="btn btnDashboard btnDashboard-transparent"
+                                                    style="margin-right:8px;">Regresar</button>
+                                                <button type="submit" id="btn_submit" name="btnSubmit"
+                                                    class="btn btnDashboard btnDashboard-primary"></button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+
+
+
+                <section id="seccion_resultados_filtro" class="hide">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <!-- <div class="card-header bg-light" style="display:flex;align-items:center;">
+
+                                        <h6 id="titulo-formulario" class="font-weight-bold mb-0">asdsad</h6>
+                                    </div> -->
+
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h2>Resultados de la busqueda:</h2>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col-12" style="display:flex;">
+                                                    <button type="button" style="width: 20rem; margin-right:10px;"
+                                                        class="btn btnDashboard btnDashboard-primary"
+                                                        id="btnFiltroRegresar">Regresar</button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div id="wrapperTablasProgramacionFiltro" class="table-responsive">
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" data-backdrop="static" tabindex="-1" id="modal-filtro">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filtrar Programacion de juegos</h5>
+                    <button id="btnFiltro_limpiar" type="button"
+                        class="btn btnDashboard btnDashboard-transparent">Limpiar Filtros</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="input_nombreCompleto" class="form-label">Equipo</label>
+                            <select class="form-control" id="select_modalFiltroEquipo">
+                                <option value="" selected>Seleccionar equipo...</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="input_nombreCompleto" class="form-label">Categoria</label>
+                            <select class="form-control" id="select_modalFiltroCategoria" disabled>
+                                <option value="" selected>Seleccionar categoria...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent"
+                        data-dismiss="modal">Cancelar</button>
+                    <button id="btnModalFiltrar" type="button"
+                        class="btn btnDashboard btnDashboard-primary">Buscar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="modal-eliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Advertencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Se eliminará el registro. ¿Desea continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent"
+                        data-dismiss="modal">Cancelar</button>
+                    <button id="btnModal_eliminar" type="button" class="btn btnDashboard btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="modal-calendarizar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Calendarización de partidas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Se agregaran todas las partidas al calendario.</p>
+                    <p>Las partidas no registradas no seran agregadas al calendario.</p>
+                    <p>¿Desea continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent"
+                        data-dismiss="modal">Cancelar</button>
+                    <button id="btnModalCalendarizar_Aceptar" type="button"
+                        class="btn btnDashboard btnDashboard-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="modal-exportar">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Generar Reporte de Estadísticas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="input_nombreCompleto" class="form-label">Categoría</label>
+                            <select class="form-control" id="select_ReporteCategoria">
+                                <option value="" selected>Seleccionar Categoría...</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="input_nombreCompleto" class="form-label">Rol</label>
+                            <select class="form-control" id="select_ReporteRol">
+                                <option value="bateo" selected>Bateador</option>
+                                <option value="pitcheo">Pitcher</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent"
+                        data-dismiss="modal">Cancelar</button>
+                    <button id="btnModalReporte_Generar" type="button"
+                        class="btn btnDashboard btnDashboard-primary">Generar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/liga-deportiva-dashboard-nav.js"></script>
+    <script type="module" src="/assets/js/ld_programacionJuegos.js"></script>
+
+    <script>
+        function filtroProgramacion() {
+            document.getElementById("select_modalFiltroEquipo").selectedIndex = 0;
+            document.getElementById("select_modalFiltroCategoria").selectedIndex = 0;
+            $('#modal-filtro').modal('show');
+        }
+
+        function abrirModalExportar() {
+            $('#modal-exportar').modal('show');
+        }
+        function confirmarEliminacion(id) {
+            document.getElementById("btnModal_eliminar").setAttribute("value", id);
+            $('#modal-eliminar').modal('show');
+        }
+
+        $('#summernote').summernote({
+            placeholder: 'Insertar una descripción de la ubicación del campo...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['italic', 'bold', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']]
+            ]
+        });
+
+        document.getElementById("btnFiltro_limpiar").addEventListener("click", () => {
+            document.getElementById("select_modalFiltroEquipo").selectedIndex = 0;
+            document.getElementById("select_modalFiltroCategoria").selectedIndex = 0;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+        integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+.seccion-header-modulo {
+    position: relative;
+    overflow: hidden;
+    height: 15.4rem;
+    padding: 0;
+}
+
+.header-modulo-wrapperParallax {
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.header-module-background {
+    height: 120%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% top;
+    -webkit-filter: brightness(40%);
+    filter: brightness(40%);
+    /* background-image: url(/assets/img/ben-hershey-Ql2n3JsUpww-unsplash.jpg); */
+}
+
+.seccion-wrapper {
+    height: auto;
+    width: 100%;
+    /* max-width: 123rem; */
+    position: relative;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+.experiencia-modulo-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.experiencia-header-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    left: 0;
+    padding-right: 10%;
+}
+
+.heading-03 {
+    font-size: 5.5vw;
+    line-height: 0.97;
+    color: #ece8e1;
+    margin: 0;
+}
+
+.titulo-experiencia {
+    padding: 0;
+    transform: translateY(-1.7rem);
+    /* max-width: calc(66.66667% - 22rem); */
+    width: 100%;
+    line-height: 0.85;
+}
+
+.titulo-experiencia span {
+    display: inline-block;
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    text-transform: uppercase;
+}
+
+
+/* Contenido Autor y Fecha */
+
+.autorFecha {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2rem;
+    padding: 1rem 0;
+    font-size: 0.8rem;
+}
+
+.contenido-articulo {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.contenido-articulo p {
+    margin-bottom: 1.5rem;
+}
+
+
+/* Contenido Articulo */
+
+.galeriaFotos {
+    margin-bottom: 1.5rem;
+}
+
+.galeriaFotos img {
+    width: 100%;
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .seccion-header-modulo:before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: 52%;
+    }
+    .seccion-header-modulo {
+        height: auto;
+        max-height: 508px;
+    }
+    .heading-03 {
+        font-size: 3rem;
+    }
+    .galeriaFotos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 992px) {
+    .heading-03 {
+        font-size: 3.5rem;
+    }
+    .galeriaFotos {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .seccion-header-modulo {
+        display: flex;
+        justify-content: center;
+    }
+    .seccion-wrapper {
+        padding: 0;
+    }
+    .experiencia-modulo-wrapper {
+        max-width: 1200px;
+    }
+    .heading-03 {
+        font-size: 4.2rem;
+    }
+}

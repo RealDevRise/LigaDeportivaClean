@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+    <!-- Ionic icons -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-dashboard.css">
+
+    <title>Panel de Control - Comité Municipal de Softbol de Ahome</title>
+
+    <style>
+        .gallery {
+            display: flex;
+            margin-top: 15px;
+            width: 100%;
+            position: relative;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        figure {
+            width: 15%;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .figureUploaded {
+            position: relative;
+        }
+        
+        .figureUploaded .deleteImg {
+            position: absolute;
+            display: flex;
+            font-size: 28px;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            top: 0px;
+            right: 0px;
+            z-index: 100;
+            cursor: pointer;
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--danger);
+            border-color: transparent;
+        }
+        
+        .figureUploaded .deleteImg:focus {
+            border-color: transparent !important;
+            outline: none;
+        }
+        
+        .figureUploaded .deleteImg i {
+            color: #fff;
+        }
+        
+        .fa-circle {
+            color: var(--danger);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="bg-primary"></div>
+        <!-- Fin sidebar -->
+
+        <div class="w-100">
+
+            <!-- Navbar -->
+            <nav id="navbar-dashboard" class="navbar navbar-expand-lg navbar-light bg-light border-bottom"></nav>
+            <!-- Fin Navbar -->
+
+            <!-- Contenido -->
+            <div id="content" class="bg-grey w-100">
+
+                <section class="bg-light py-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8">
+                                <h1 class="font-weight-bold mb-0">Equipos</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ld_principal">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <div class="card-header bg-light" style="display:flex;align-items:center;justify-content: space-between;">
+                                        <div>
+                                            <button type="button" id="btn_nuevo" class="btn btnDashboard btnDashboard-primary" style="margin-right:8px;"><i class="fas fa-plus"></i> Nuevo equipo</button>
+                                            <button type="button" id="btn_exportar_equipos" class="btn btnDashboard btnDashboard-primary" style="margin-right:8px;"><i class="fas fa-file-download"></i> Exportar equipos</button>
+
+                                        </div>
+
+                                        <div>
+                                            <form id="form_buscador" style="display: flex; width: 25rem;">
+                                                <input type="text" class="form-control" id="nombre_busqueda" placeholder="Buscar equipo...">
+                                                <button type="submit" id="btn_submit_buscador" class="btn btnDashboard btnDashboard-primary"><i class="fas fa-search"></i></button>
+                                            </form>
+                                        </div>
+
+                                        <div style="display: none;">
+                                            <select class="form-control" id="select_filtroTemporada">
+                                                <option value="" selected>Filtrar por Temporada</option>
+                                              </select>
+
+                                            <select class="form-control" id="select_filtroCategoria">
+                                                <option value="" selected>Filtrar por Categoria</option>
+                                              </select>
+
+                                            <button type="button" id="btn_buscar_equipo" class="btn btnDashboard btnDashboard-primary" style="margin-right:8px;"><i class="fas fa-search"></i></button>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="ld_contenedor_tabla"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" id="control-paginado">
+                            <div class="col-lg my-3" style="display:flex; justify-content:center;">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination" id="ld_paginacion">
+
+                                        <li class="page-item"><button type="button" class="page-link" aria-label="Previous" id="btn_previo"><span
+                                                    aria-hidden="true">Anterior</span></button></li>
+                                        <li class="page-item"><button type="button" id="btn_siguiente" class="page-link" aria-label="Next"><span aria-hidden="true">Siguiente</span></button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+
+                <section id="seccion_ld_formulario" class="hide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <div class="card-header bg-light" style="display:flex;align-items:center;">
+
+                                        <h6 id="titulo-formulario" class="font-weight-bold mb-0"></h6>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form method="POST" id="ld_formulario">
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="inputNombre" class="form-label">Nombre del
+                                                            equipo</label>
+                                                        <input type="text" class="form-control" placeholder="Nombre del equipo..." id="inputNombre" required>
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <label for="inputNombreCorto" class="form-label">Nombre corto
+                                                            del equipo</label>
+                                                        <input type="text" class="form-control" placeholder="Nombre corto..." id="inputNombreCorto" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+
+                                                <div class="row">
+                                                    <div class="col-lg">
+                                                        <label for="selectTemporada" class="form-label">Temporada</label>
+                                                        <select class="form-control" id="selectTemporada" style="width: 100%;">
+                                                            <option>Seleccionar Temporada...</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg">
+                                                        <label for="selectCategoria" class="form-label">Categoría</label>
+                                                        <select class="form-control" id="selectCategoria" style="width: 100%;">
+                                                            <option>Seleccionar Categoría...</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-lg">
+                                                        <label for="inputManager" class="form-label">Manager</label>
+                                                        <input type="text" class="form-control" placeholder="Manager del equipo..." id="inputManager" required>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <div class="row">
+
+
+
+                                                    <div class="col-lg">
+                                                        <label for="inputCoach" class="form-label">Coach</label>
+                                                        <input type="text" class="form-control" placeholder="Coach..." id="inputCoach" required>
+                                                    </div>
+
+                                                    <div class="col-lg">
+                                                        <label for="inputCupo" class="form-label">Cupo</label>
+                                                        <input type="number" class="form-control" placeholder="Cupo..." id="inputCupo" required>
+                                                    </div>
+
+                                                    <div class="col-lg" style="display: flex; align-items: flex-end;">
+                                                        <button type="button" id="btnIntegrantes" class="btn btnDashboard btnDashboard-primary" style="width:100%;">Ver integrantes</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <label for="inputPatrocinador" class="form-label">Patrocinador</label>
+                                                        <input type="text" class="form-control" placeholder="Patrocinador..." id="inputPatrocinador">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3" style="display:flex;flex-direction: column; ">
+                                                <label for="input_contenido" class="form-label">Subir logotipo</label>
+                                                <input type="file" accept="image/png, image/jpeg" id="imageUploader">
+                                                <div id="galeriaImagen" class="gallery"></div>
+                                                <div id="galeriaImagen_subidas" class="gallery hidden"></div>
+                                            </div>
+
+
+
+                                            <div class="mb-3">
+                                                <label for="input_contenido" class="form-label">Notas</label>
+                                                <textarea name="descripcion" id="summernote"></textarea>
+                                                <input type="hidden" id="ld_hiddenId" name="idTemporada">
+
+
+                                            </div>
+
+                                            <!-- <div class="mb-3" style="display:flex;flex-direction: column; ">
+                                                <label for="input_contenido" class="form-label">Subir imagenes</label>
+                                                <input type="file" accept="image/png, image/jpeg" onchange="previsualizar()" id="imageUploader" multiple>
+                                                <div id="galeriaImagen" class="gallery"></div>
+                                                <div id="galeriaImagen_subidas" class="gallery hidden"></div>
+                                            </div> -->
+
+                                            <div class="float-right">
+                                                <button type="button" id="btnFormulario_regresar" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Regresar</button>
+                                                <button type="submit" id="btn_submit" name="btnSubmit" class="btn btnDashboard btnDashboard-primary"></button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <section id="contenedor_carga_jugadores" class="hide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg my-3">
+                                <div class="card rounded-0 wrapper-noticias">
+                                    <div class="card-header bg-light" style="display:flex;align-items:center;">
+
+                                        <h6 id="titulo-carga_jugadores" class="font-weight-bold mb-0">Carga de Jugadores</h6>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form method="POST" id="formulario_carga_jugadores">
+
+                                            <div class="mb-3">
+                                                <div class="row mt-4">
+                                                    <div class="col-lg-8" style="display: flex; flex-direction:column;">
+                                                        <label for="csvUploader" class="form-label">Subir CSV</label>
+                                                        <input type="file" accept=".csv" id="csvUploader">
+
+                                                        <input type="hidden" name="" id="hiddenCVS">
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="row mt-4">
+                                                    <div class="col-lg-12" style="display: flex; flex-direction:column;">
+                                                        <table class="table">
+                                                            <thead class="thead-dark">
+                                                                <tr>
+                                                                    <th scope="col">Nombre del jugador</th>
+                                                                    <th scope="col">Fecha de nacimiento</th>
+                                                                    <th scope="col">Telefono del jugador</th>
+                                                                    <th scope="col">CURP</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="body-carga-jugador">
+                                                                <!-- <tr>
+                                                                    <th scope="row">1</th>
+                                                                    <td>Mark</td>
+                                                                    <td>Otto</td>
+                                                                    <td>@mdo</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">2</th>
+                                                                    <td>Jacob</td>
+                                                                    <td>Thornton</td>
+                                                                    <td>@fat</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">3</th>
+                                                                    <td>Larry</td>
+                                                                    <td>the Bird</td>
+                                                                    <td>@twitter</td>
+                                                                </tr> -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <button type="button" id="btn_cancel_carga" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Regresar</button>
+                                                <button type="submit" id="btn_submit_carga" name="btnSubmit" class="btn btnDashboard btnDashboard-primary">Cargar Jugadores</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modal-eliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Advertencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Se eliminará el equipo. ¿Desea continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent" data-dismiss="modal">Cancelar</button>
+                    <button id="btnModal_eliminar" type="button" class="btn btnDashboard btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="modal-retirar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Advertencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Se eliminará el equipo. ¿Desea continuar? as</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btnDashboard btnDashboard-transparent" data-dismiss="modal">Cancelar</button>
+                    <button id="btnModal_eliminar" type="button" class="btn btnDashboard btn-danger">Eliminar</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalIntegrantes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="modalTituloIntegrantes" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTituloIntegrantes">Integrantes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div id="divTablaIntegrantes">
+                        <div class="row">
+                            <div class="col-lg" style="display: flex; justify-content:space-between;">
+                                <div>
+                                    <button type="button" id="btnAgregarJugador" class="btn btnDashboard btnDashboard-transparent"><i class="fas fa-user-plus" style="margin-right:4px;"></i> Registrar nuevo jugador</button>
+
+                                </div>
+                                <div style="display: flex;">
+                                    <select class="form-control" id="select_jugadores_disponibles" name="status" style="width: 100%;" required>
+                                        <option value="" disabled selected>Seleccionar un jugador...</option>
+                                        
+                                    </select>
+                                    <button type="button" style="width: 26rem;" id="btnAgregarJugadorExistente" class="btn btnDashboard btnDashboard-transparent"><i class="fas fa-user-plus" style="margin-right:4px;"></i> Agregar jugador existente</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col-lg">
+                                <table class="table table-striped" id="tablaIntegrantes">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">No. Camisa</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoTabla"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="divFormularioAgregarJugador" class="hide">
+
+
+                        <form id="formulario_integrantes" method="POST">
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <h3>Datos personales</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <label for="input_nombreCompleto" class="form-label">Nombre completo <span class="obligatorio">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Nombre completo..." name="nombreCompleto" id="input_nombreCompleto" required>
+                                    </div>
+                                    <div class="col-lg">
+                                        <label for="input_nombreCorto" class="form-label">Nombre corto <span class="obligatorio">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Nombre corto..." id="input_nombreCorto" name="nombreCorto" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+
+                                    <div class="col-lg">
+                                        <label for="select_temporada" class="form-label">Temporada
+                                            actual</label>
+                                        <select class="form-control" id="select_temporada" name="status" style="width: 100%;" required>
+                                            <option value="" disabled selected>Seleccione una temporada
+                                            </option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="select_categoria" class="form-label">Categoría
+                                            actual</label>
+                                        <select class="form-control" id="select_categoria" name="status" style="width: 100%;" required>
+                                            <option value="" disabled selected>Seleccione una categoría
+                                            </option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+                                        <input type="date" class="form-control" id="input_fechaNacimiento">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <div class="row">
+
+
+                                    <div class="col-lg">
+                                        <label for="input_curp" class="form-label">CURP <span class="obligatorio">*</span></label>
+                                        <input type="text" class="form-control" placeholder="CURP..." id="input_curp" required>
+                                    </div>
+
+                                    <div id="div_campoCamisa" class="col-lg">
+                                        <label for="input_numeroCamisa" class="form-label">Número de camisa</label>
+                                        <input type="number" placeholder="Número..." class="form-control" id="input_numeroCamisa">
+                                    </div>
+
+
+                                    <div id="div_campoCategoriaJugador" class="col-lg">
+                                        <label for="select_categoriaJugador" class="form-label">Categoría del jugador</label>
+                                        <select class="form-control" id="select_categoriaJugador" name="status" style="width: 100%;" required>
+                                            <option value="" disabled selected>Seleccionar categoría...</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="input_telefonoJugador" class="form-label">Teléfono del jugador</label>
+                                        <input type="number" class="form-control" placeholder="Telefono..." name="calle" id="input_telefonoJugador">
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="select_edadLiga" class="form-label">Edad liga</label>
+                                        <select class="form-control" id="select_edadLiga" style="width: 100%;">
+                                                <option value="" disabled selected>Seleccionar Edad Liga...</option>
+                                                <option value="B">Brincador</option>
+                                                <option value="R">Repetidor</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="input_registroAsociacion" class="form-label">Registro de asociación</label>
+                                        <input type="text" class="form-control" placeholder="Registro de asociación..." id="input_registroAsociacion">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="select_equipoOrigen" class="form-label">Equipo de origen</label>
+                                        <select class="form-control" id="select_equipoOrigen" style="width: 100%;">
+                                                <option value="" disabled selected>Seleccionar equipo de origen...</option>
+                                                <option value="N/A">N/A</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_observacionesJugador" class="form-label">Observaciones del jugador</label>
+                                        <input type="text" class="form-control" placeholder="Observaciones del jugador..." id="input_observacionesJugador">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+
+                                    <div id="div_campoFechaMovimiento" class="col-lg-4">
+                                        <label for="input_fechaMovimiento" maxlength="255" class="form-label">Fecha de Movimiento</label>
+                                        <input type="date" class="form-control" id="input_fechaMovimiento" required>
+                                    </div>
+
+
+                                    <div id="div_camporObservacionMovimiento" class="col-lg-8">
+                                        <label for="input_observacionesMovimiento" class="form-label">Observación del movimiento</label>
+                                        <input type="text" placeholder="Observaciones del movimiento..." class="form-control" id="input_observacionesMovimiento" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3" style="padding-top:1rem;">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <h3>Dirección</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <label for="input_calle" class="form-label">Nombre de la calle</label>
+                                        <input type="text" class="form-control" placeholder="Nombre de la calle..." name="calle" id="input_calle">
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_numero" class="form-label">No. de casa</label>
+                                        <input type="text" class="form-control" placeholder="Número..." id="input_numero">
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_colonia" class="form-label">Colonia</label>
+                                        <input type="text" class="form-control" placeholder="Colonia..." id="input_colonia">
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <label for="input_ciudad" class="form-label">Ciudad</label>
+                                        <input type="text" class="form-control" placeholder="Ciudad..." name="calle" id="input_ciudad">
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_estado" class="form-label">Estado</label>
+                                        <input type="text" class="form-control" placeholder="Estado..." name="calle" id="input_estado">
+                                    </div>
+
+                                    <div class="col-lg">
+                                        <label for="input_pais" class="form-label">País</label>
+                                        <input type="text" class="form-control" placeholder="País..." name="calle" id="input_pais">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_formularioJugador">
+                                <div class="mb-3" style="padding-top:1rem;">
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <h3>Contacto</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <label for="input_nombrePadre" class="form-label">Nombre del
+                                                padre</label>
+                                            <input type="text" class="form-control" placeholder="Nombre..." name="calle" id="input_nombrePadre">
+                                        </div>
+
+                                        <div class="col-lg">
+                                            <label for="input_telefonoPadre" class="form-label">Teléfono</label>
+                                            <input type="number" class="form-control" placeholder="Telefono..." name="calle" id="input_telefonoPadre">
+                                        </div>
+
+                                        <div class="col-lg">
+                                            <label for="input_emailPadre" class="form-label">Email</label>
+                                            <input type="email" class="form-control" placeholder="correo@email.com..." name="calle" id="input_emailPadre">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <label for="input_nombreMadre" class="form-label">Nombre de la
+                                                madre </label>
+                                            <input type="text" class="form-control" placeholder="Nombre..." name="calle" id="input_nombreMadre">
+                                        </div>
+
+                                        <div class="col-lg">
+                                            <label for="input_telefonoMadre" class="form-label">Teléfono</label>
+                                            <input type="number" class="form-control" placeholder="Telefono..." name="calle" id="input_telefonoMadre">
+                                        </div>
+
+                                        <div class="col-lg">
+                                            <label for="input_emailMadre" class="form-label">Email</label>
+                                            <input type="email" class="form-control" placeholder="correo@email.com..." name="calle" id="input_emailMadre">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <label for="summernoteIntegrantes" class="form-label">Notas</label>
+                                    <textarea name="descripcion" id="summernoteIntegrantes"></textarea>
+                                    <!-- <input type="hidden" id="ld_hiddenId" name="idTemporada"> -->
+
+
+                                </div>
+
+
+
+                                <div class="float-right">
+                                    <button type="button" id="btnFormularioIntegrantes_Regresar" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Regresar</button>
+                                    <button type="submit" id="btnFormularioIntegrantes_Submit" class="btn btnDashboard btnDashboard-primary">Guardar</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div id="contenedor_retiro" class="hide">
+                        <form id="formulario_retiro_jugador" style="width:100%;">
+
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label id="lbl_fechaMovimientoAlta" for="input_fechaMovimientoAlta" class="form-label">Fecha de movimiento</label>
+                                        <input type="date" class="form-control" id="input_fechaMovimientoAlta">
+                                        <input type="hidden" id="hiddenModalidad">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <label id="lbl_nombre_retiro_jugador" for="textarea_motivo_retiro" class="form-label"></label>
+                                        <textarea id="textarea_motivo_retiro" placeholder="Observacion Movimiento..." rows="5" style="width: 100%;"></textarea>
+                                        <input type="hidden" id="hidden_id_jugador_retiro">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="float-right">
+                                <button type="button" id="btnFormularioRetiro_Regresar" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Cancelar</button>
+                                <button type="submit" id="btnFormularioRetiro_Submit" class="btn btnDashboard btnDashboard-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btnDashboard btnDashboard-transparent" data-dismiss="modal">Cerrar</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/liga-deportiva-dashboard-nav.js"></script>
+
+    <script type="module" src="/assets/js/ld_equipos.js"></script>
+
+    <script src="/assets/js/papaparse.min.js"></script>
+
+
+    <script>
+        const uploaderJugadores = document.getElementById("csvUploader");
+        const bodyCargaJugadores = document.getElementById("body-carga-jugador");
+
+        function confirmarEliminacion(id) {
+            document.getElementById("btnModal_eliminar").setAttribute("value", id);
+            $('#modal-eliminar').modal('show');
+        }
+
+        $('#summernote').summernote({
+            placeholder: 'Insertar notas...',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['italic', 'bold', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']]
+            ]
+        });
+
+        $('#summernoteIntegrantes').summernote({
+            placeholder: 'Insertar notas...',
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['italic', 'bold', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']]
+            ]
+        });
+
+        uploaderJugadores.addEventListener("change", () => {
+            Papa.parse(uploaderJugadores.files[0], {
+                complete: function(results) {
+
+                    results.data.forEach(function(elemento) {
+                        if (elemento[0] != "") {
+                            let telefonoJugador = elemento[2] != '' ? elemento[2].replace(/\D/g, '') : "";
+
+                            bodyCargaJugadores.innerHTML += `
+                        <tr>
+                            <th scope="row">${elemento[0]}</th>
+                            <td>${elemento[1]}</td>
+                            <td>${telefonoJugador}</td>
+                            <td>${elemento[3]}</td>
+                        </tr>
+                        `;
+                        }
+                    });
+
+                    document.getElementById("hiddenCVS").value = JSON.stringify(results.data);
+                }
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,700;1,300;1,500&display=swap');
+:root {
+    /* --primary: #111B54;
+    --light: #ffffff; */
+    --primary: #FFCA00;
+    --secondary: #383838;
+    --danger: #dc3545;
+    --grey: #efefef;
+    --light: #eeeeee;
+    --dark: #222222;
+    --blue: #0052cc;
+    --activeBlue: #0066ff;
+    --activeDanger: #ff4153;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: var(--dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 500 !important;
+}
+
+.hide {
+    display: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+b {
+    font-weight: bold !important;
+}
+
+.p-3 {
+    padding: 1rem 2rem !important;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.bg-success,
+.bg-danger {
+    color: #fff;
+}
+
+.obligatorio {
+    color: var(--activeDanger);
+}
+
+.btn-primary {
+    color: var(--dark);
+    /* font-weight: bold; */
+}
+
+.btnDashboard {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Archivo', sans-serif;
+}
+
+.btnDashboard-primary {
+    color: #fff !important;
+    background-color: var(--blue);
+}
+
+.btnDashboard-primary:hover {
+    background-color: var(--activeBlue);
+}
+
+.btnDashboard-danger {
+    color: #fff;
+    background-color: var(--danger);
+}
+
+.btnDashboard-danger:hover {
+    color: #fff !important;
+    background-color: var(--activeDanger);
+}
+
+.btnDashboard-transparent {
+    color: #42526e;
+}
+
+.btnDashboard-transparent:hover {
+    background-color: var(--grey);
+    color: #42526e;
+}
+
+.btn-danger {
+    border: 0;
+    /* font-weight: bold; */
+}
+
+.bg-primary {
+    background-color: var(--dark) !important;
+}
+
+.bg-light {
+    background-color: var(--light) !important;
+}
+
+.bg-grey {
+    background-color: var(--grey) !important;
+}
+
+.bg-mix {
+    background: linear-gradient(180deg, var(--light) 50%, var(--grey) 0);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: 0;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: var(--activeDanger);
+}
+
+#sidebar-container {
+    min-height: 100vh;
+}
+
+#sidebar-container .logo {
+    text-align: center;
+    padding: 0.875rem 0;
+}
+
+#sidebar-container .logo img {
+    width: 5rem;
+}
+
+#sidebar-container .menu {
+    width: 17rem;
+    font-weight: bold;
+}
+
+#sidebar-container .menu a {
+    font-size: 0.85rem;
+    display: flex !important;
+    align-items: center;
+}
+
+#sidebar-container .menu i {
+    font-size: 1.5rem;
+    margin-right: 1rem !important;
+}
+
+#content {
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 5rem;
+}
+
+.avatar {
+    max-width: 35px;
+}
+
+.btn-search {
+    right: 0;
+}
+
+.stat {
+    border-right: 1px solid var(--grey);
+}
+
+.wrapper-noticias .card-body h5 {
+    font-weight: bold;
+}
+
+.edad_input {
+    display: flex;
+    width: 100%;
+}
+
+.edad_input .field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.field input {
+    width: 100%;
+    margin-left: 12px;
+}
+
+.edad_input .separador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    width: 85px;
+}
+
+.cabecera-seleccionado {
+    border: 3px solid red;
+}
+
+.contenedor-descripcion-evento {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+    color: var(--light);
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    text-align: justify;
+    margin-bottom: 0.6rem;
+}
+
+.contenedor-descripcion-evento p {
+    font-size: 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: var(--dark);
+}
+
+
+/* Seleccion de equipos */
+
+#divTablaGrupoEquipos {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #sidebar-container {
+        display: none;
+    }
+    .stat {
+        border: 0;
+    }
+}

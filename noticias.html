@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-elements.css">
+    <link rel="stylesheet" href="/assets/css/noticias.css">
+    <title id="siteTitle">Noticias - </title>
+</head>
+
+<style>
+    .titulo--noticia {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--light);
+    }
+</style>
+
+<body>
+    <nav id="liga-deportiva-nav"></nav>
+    <div id="sidenav-menu" class="sidenav"></div>
+
+
+
+    <div class="container">
+
+        <div class="separador">
+            <span>Noticias</span>
+        </div>
+
+        <div id="primera-noticia" class="header-noticia">
+        </div>
+
+        <hr class="separador-hr">
+
+        <div id="contenedor-noticias" class="wrapper--noticias">
+        </div>
+
+        <!-- Más Noticias -->
+        <div class="element-wrapper">
+            <button id="btn_cargarNoticias" class="boton boton-primary">Mas noticias</button>
+        </div>
+
+    </div>
+
+    <footer id="liga-deportiva-footer" class="liga--footer"></footer>
+    <script src="/assets/js/liga-deportiva-nav.js"></script>
+    <script type="module" src="/assets/js/moduloNoticias.js"></script>
+
+    <script>
+        document.getElementById('menu-noticias').classList.add('activo');
+        document.getElementById('sidemenu-noticias').classList.add('activo');
+
+        const irNoticia = (idNoticia) => {
+            window.location.href = `/noticias/${idNoticia}`;
+        }
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-elements.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+    <link rel="stylesheet" href="/assets/css/calendario.css">
+    <link rel="stylesheet" href="/assets/css/roster.css">
+    <link rel="stylesheet" href="../assets/css/posiciones.css">
+
+    <title id="siteTitle">Standing - </title>
+
+</head>
+
+<body>
+    <nav id="liga-deportiva-nav"></nav>
+    <div id="sidenav-menu" class="sidenav"></div>
+
+
+    <!-- Contenido -->
+    <div class="container">
+        <div class="wrapper--seccion">
+            <div class="separador">
+                <div style="display: flex;">
+                    <button class="boton boton-primary oculto" id="btn_regresarGridEquipos"><i
+                            class="fas fa-arrow-left"></i></button>
+                    <span id="titulo-seccion-roster">Standing</span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr class="separador-hr">
+
+        <div id="contenedor-filtro">
+            <div class="row">
+                <div class="col-lg-12" id="col-filtro" style="display:flex; justify-content:space-between;">
+                    <div class="btn-group" id="grupoModalidad">
+
+                        <a href="javascript:void(0)" id="btnMostrarTodo" class="btn boton-primary active" aria-current="page">Mostrar Todo</a>
+                        <!-- <a href="javascript:void(0)" onclick="cambiarModalidad(this, 1)" class="btn boton-primary">Rapida
+                            Avanzada</a>
+                        <a href="javascript:void(0)" onclick="cambiarModalidad(this, 2)" class="btn boton-primary" aria-current="page">Puesta Novatos</a>
+                        <a href="javascript:void(0)" onclick="cambiarModalidad(this, 3)" class="btn boton-primary">Puesta
+                            Avanzada</a> -->
+
+                    </div>
+                    <div id="contenedorFiltroGrupo" style="display: flex; align-items: center;" class="oculto">
+                        <select id="selectGrupo" style="width:20rem; margin-right:8px;">
+                            <option value="" selected>Todos los grupos</option>
+                            <!-- <option value="A">Grupo A</option>
+                            <option value="B">Grupo B</option>
+                            <option value="C">Grupo C</option>
+                            <option value="D">Grupo D</option> -->
+                        </select>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contenedor-sindatos" class="oculto">
+            <h4>Sin datos para mostrar</h4>
+        </div>
+
+        <div id="contendor-carga" style="margin-top:1rem;" class="oculto">
+            <div>
+                <svg class="spinner" viewBox="0 0 50 50">
+                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                  </svg>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <h4>Cargando standing</h4>
+            </div>
+
+        </div>
+
+
+        <div id="contenedor-standing" style="margin-top:1rem;">
+
+            <div id="contenedor-rapidaAvanzada" class="oculto">
+                <table class="table table-striped-columns table-striped table-dark table-responsive">
+                    <thead class="cabezalModalidad">
+                        <tr>
+                            <th scope="col" class="tituloHeadModalidad" colspan="8">Rapida Avanzada</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th scope="col">POS</th>
+                            <th scope="col"></th>
+                            <th scope="col">EQUIPOS</th>
+                            <th scope="col">JJ</th>
+                            <th scope="col">T</th>
+                            <th scope="col">D</th>
+                            <th scope="col">E</th>
+                            <th scope="col">PCT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FB2o6JLOQfmIMWvYG9Cb0%2FLogotipo%2FEl%20Veintidos%20-%20Letters%20LM.jpg?alt=media&token=0da059e3-c88a-4767-985d-8a8a3bc37b39" alt="EL VEINTIDOS"
+                                    class="logotipo_Equipo"></td>
+                            <td>EL VEINTIDOS</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FL05bVRIkzdWdLAiqCjkD%2FLogotipo%2FCROMATIKA%20-%20Logo.png.jpg?alt=media&token=53fd7261-3e17-42b4-8116-f55478787228" alt="CROMATIKA"
+                                    class="logotipo_Equipo"></td>
+                            <td>CROMATIKA</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FihiJJiWIUfmTbmXPmIdw%2FLogotipo%2FDinamycsOchoaTrucking_Mesa%20de%20trabajo%201.png?alt=media&token=8551c203-3f8f-40f9-946c-4c0f0a1a7aaf"
+                                    alt="DINAMYCS - OCHOA TRUCKING" class="logotipo_Equipo"></td>
+                            <td>DINAMYCS - OCHOA TRUCKING</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.667</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FgcB5324TPKPcD4LA5quS%2FLogotipo%2FTacos%20El%20Zurdo.png.jpg?alt=media&token=949cc8ba-d794-4911-bd03-3c1ef56e8bd7" alt="TACOS EL ZURDO"
+                                    class="logotipo_Equipo"></td>
+                            <td>TACOS EL ZURDO</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.667</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FWdPnZBjNwOMrttsBmtxi%2FLogotipo%2FPerfol_nuevo.jpeg?alt=media&token=8c45183f-31a8-46dd-8608-9e7b2137e8ed" alt="PERFOL" class="logotipo_Equipo"></td>
+                            <td>PERFOL</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FIM7pee7MhJXjcBoKS0WT%2FLogotipo%2FPremium%20Autoest%C3%A9tica.png.jpg?alt=media&token=2d6bc1f8-f71c-433f-a3f6-d3d71cb1fc78" alt="PREMIUM AUTOESTETICA"
+                                    class="logotipo_Equipo"></td>
+                            <td>PREMIUM AUTOESTETICA</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FvV2JIuntnaVJbMdbpCtx%2FLogotipo%2FWhite%20Dental.png.jpg?alt=media&token=57e94b99-27f7-4e08-8f28-25720923d175" alt="WHITE DENTAL" class="logotipo_Equipo"></td>
+                            <td>WHITE DENTAL</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FCvbfWBHPVQALYbKTBRQ6%2FLogotipo%2FmARISQUE%C3%91A_NUEVO.jpeg?alt=media&token=bf89347f-fb64-42b0-af4f-446843bb8acf" alt="LA MARISKEÑA"
+                                    class="logotipo_Equipo"></td>
+                            <td>LA MARISKEÑA - UNIFORMES TOPETE</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F30Dp1kXJBVzsqZj0ySxY%2FLogotipo%2FBravos%20SNTSS.png.jpg?alt=media&token=10ce9b60-9f5e-4112-a31b-b19284127e84" alt="BRAVO SNTSS" class="logotipo_Equipo"></td>
+                            <td>BRAVO SNTSS</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FfjOosKJE1l89xjzBTyGA%2FLogotipo%2FMultiservicios%20LM.png.jpg?alt=media&token=d7a689a9-ad42-412d-bce5-d8d98f098d46" alt="MULTISERVICIOS LM"
+                                    class="logotipo_Equipo"></td>
+                            <td>MULTISERVICIOS LM</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">11</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FV0zkte0FnCixACGQbvzE%2FLogotipo%2FBS%20TIGER.png.jpg?alt=media&token=20b49f39-773f-43e9-863d-31299b724959" alt="BS TIGER" class="logotipo_Equipo"></td>
+                            <td>BS TIGER</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0.000</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="contenedor-puestaNovatos" class="contenedorTabla oculto">
+                <table class="table table-striped-columns table-striped table-dark table-responsive">
+                    <thead class="cabezalModalidad">
+                        <tr>
+                            <th scope="col" class="tituloHeadModalidad" colspan="8">Puesta Novatos</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th scope="col">POS</th>
+                            <th scope="col"></th>
+                            <th scope="col">EQUIPOS</th>
+                            <th scope="col">JJ</th>
+                            <th scope="col">T</th>
+                            <th scope="col">D</th>
+                            <th scope="col">E</th>
+                            <th scope="col">PCT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2Fqj2Kggmrb7pcsgntEE72%2FLogotipo%2FChutameros%20de%20la%20Memoria.png.jpg?alt=media&token=0dcbac53-7e62-4f7c-8785-2b348e38c29b" alt="CHUTAMEROS LA MEMORIA"
+                                    class="logotipo_Equipo"></td>
+                            <td>CHUTAMEROS LA MEMORIA</td>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FO0qvXLvnCXzjP6nAj5Hh%2FLogotipo%2FMolinera%20del%20Fuerte.jpg?alt=media&token=726cdbff-200e-4c5d-8c98-e14824760fdb" alt="MOLINERA DEL FUERTE"
+                                    class="logotipo_Equipo"></td>
+                            <td>MOLINERA DEL FUERTE</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FvJJLs8qZlByckGZIQ638%2FLogotipo%2FUrban%20Terra%20Constructora.jpg?alt=media&token=7040bb6e-306a-4948-a3ef-26a75d78fa5b" alt="URBAN TERRA CONSTRUCCIONES"
+                                    class="logotipo_Equipo"></td>
+                            <td>URBAN TERRA CONSTRUCCIONES</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FZgzAtGf16pJJuVESMAoy%2FLogotipo%2FLa%20Cocher%C3%ADa%20LM.jpg?alt=media&token=3ba79267-2d0a-455e-879a-755f43987ea1" alt="LA COCHERIA LM"
+                                    class="logotipo_Equipo"></td>
+                            <td>LA COCHERIA LM</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FdPkPdl5WVWzOcnn87FDU%2FLogotipo%2FGoogles.png.jpg?alt=media&token=b499d597-bb90-41cb-9eb7-23f5c6d8b791" alt="GOOGLES" class="logotipo_Equipo"></td>
+                            <td>GOOGLES</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FPWT4YM5kpJiUH1KAgjLn%2FLogotipo%2FMagic%20Muebles.jpg?alt=media&token=bc2e79c6-746e-4b95-8b04-f432083c28f7" alt="MAGIC MUEBLES" class="logotipo_Equipo"></td>
+                            <td>MAGIC MUEBLES</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0.750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FYv7OMDv7V4wtprhjXOjQ%2FLogotipo%2FCelulandia.png.jpg?alt=media&token=d1691ec6-0170-4123-9903-aec7ad6f9a33" alt="CELULANDIA" class="logotipo_Equipo"></td>
+                            <td>CELULANDIA</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FoZMG56ugRyw74y8rm4zb%2FLogotipo%2FHuachicoleros.jpg?alt=media&token=3d9eb6e6-7980-42ba-8d93-a72c91eec515" alt="HUACHICOLEROS" class="logotipo_Equipo"></td>
+                            <td>HUACHICOLEROS</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FDUKzijP3cwdqZDLJqG68%2FLogotipo%2FIndustriales.jpg?alt=media&token=f6cc6619-cfff-4efd-9f65-dd40cf2f5506" alt="INDUSTRIALES" class="logotipo_Equipo"></td>
+                            <td>INDUSTRIALES</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F0axNYUrNVMdh28rmZDGV%2FLogotipo%2FBatallosos.png.jpg?alt=media&token=bff66570-a715-4b8f-94d3-1d9962a7f018" alt="BATALLOSOS" class="logotipo_Equipo"></td>
+                            <td>BATALLOSOS</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">11</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F6CQc1Eg40yN3qc1oywJl%2FLogotipo%2FAbarrotes%20Verdugo.jpg?alt=media&token=88a44e50-33c0-48e7-92f3-031d972f9e6f" alt="ABARROTES VERDUGO"
+                                    class="logotipo_Equipo"></td>
+                            <td>ABARROTES VERDUGO</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.500</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">12</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FINNHiDTZLcYs7z2ypUDU%2FLogotipo%2FChavorrucos%20-%20Molino%20Siglo%20XX.jpg?alt=media&token=6e1c1dcd-c420-465a-948c-873a5dda6f1f" alt="CHAVORRUCOS"
+                                    class="logotipo_Equipo"></td>
+                            <td>CHAVORRUCOS - M. SIGLO XX</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>0.333</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">13</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F1SqnTS1rT6s6ouEwitbC%2FLogotipo%2FBioplanet.jpg?alt=media&token=ab885343-ad31-4ecc-be93-65213781d611" alt="BIOPLANET" class="logotipo_Equipo"></td>
+                            <td>BIOPLANET</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0.250</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">14</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FTXiwYNEfEvpg8rnula4J%2FLogotipo%2FDeportivo%20Chocolate.jpg?alt=media&token=7951e67d-768c-4bb6-8f23-2441803bd9b7" alt="DEPORTIVO CHOCOLATE"
+                                    class="logotipo_Equipo"></td>
+                            <td>DEPORTIVO CHOCOLATE</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0.250</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">15</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F7cRGbD5JaZ7D57L5Y7DU%2FLogotipo%2FLosParientes.jpeg?alt=media&token=adeb9e76-ad14-4a0d-8844-811d50bd2ef0" alt="LOS PARIENTES" class="logotipo_Equipo"></td>
+                            <td>LOS PARIENTES</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0.000</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">16</th>
+                            <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FBCXc1E5WcjJnZYImZdbD%2FLogotipo%2FPescadorsillos%20SC.jpg?alt=media&token=66d4b6f2-4a95-410d-82f9-6cec081314de" alt="SC PESCADORCILLOS"
+                                    class="logotipo_Equipo"></td>
+                            <td>SC PESCADORCILLOS</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="contenedor-puestaAvanzada" class="oculto">
+                <div id="contenedor-puestaAvanzadaGrupoA" class="contenedorTabla">
+                    <table class="table table-striped-columns table-striped table-dark table-responsive">
+                        <thead class="cabezalModalidad">
+                            <tr>
+                                <th scope="col" class="tituloHeadModalidad" colspan="8">Puesta Avanzada <small> - Grupo
+                                        A</small></th>
+
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">POS</th>
+                                <th scope="col"></th>
+                                <th scope="col">EQUIPOS</th>
+                                <th scope="col">JJ</th>
+                                <th scope="col">T</th>
+                                <th scope="col">D</th>
+                                <th scope="col">E</th>
+                                <th scope="col">PCT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FDIjdDyWFTGkPEZLOSsan%2FLogotipo%2FPichurrias.jpg?alt=media&token=62da954e-ce02-451e-b737-d775ba49b4aa" alt="PICHURRIAS" class="logotipo_Equipo"></td>
+                                <td>PICHURRIAS</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FItksxW8S0BAnayB4Mx0F%2FLogotipo%2FSolarFamily.jpeg?alt=media&token=acfe5728-fd83-4a53-9b7b-56080d20afd7" alt="AMERICAN SOLAR FAMILY"
+                                        class="logotipo_Equipo"></td>
+                                <td>AMERICAN SOLAR FAMILY</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FJAJ6Il8ViM74sVhLVWgp%2FLogotipo%2FBrabucones.jpg?alt=media&token=f8561b2f-2bc2-46b7-bcc8-98901e83cfba" alt="BRABUCONES" class="logotipo_Equipo"></td>
+                                <td>BRABUCONES</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FFq857mo1jkY8Hn5bxsUn%2FLogotipo%2FMataSue%C3%B1os.png?alt=media&token=a54a411c-279c-46b5-a5ff-1bcec0ff5983" alt="MATASUEÑOS" class="logotipo_Equipo"></td>
+                                <td>MATASUEÑOS</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FOa6axl5jIxWHMPEx9Ywd%2FLogotipo%2FAgrocapital%20-%20Stanley's.jpg?alt=media&token=debe9aab-db6f-4c98-9d14-bad00943b14b" alt="AGROCAPITAL"
+                                        class="logotipo_Equipo"></td>
+                                <td>AGROCAPITAL - STANLEY</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FEskAJs8ECA8frypmuuJv%2FLogotipo%2FLa%20Michoacana.jpg?alt=media&token=8c65b874-478f-457e-873c-f526ec7a1f84" alt="LA MICHOACANA"
+                                        class="logotipo_Equipo"></td>
+                                <td>LA MICHOACANA</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FEmBxkNwhZztgmPxtKtdq%2FLogotipo%2FHortikem.png?alt=media&token=d383fb9b-9581-4184-83d7-ec837f8f6a96" alt="HORTIKEM" class="logotipo_Equipo"></td>
+                                <td>HORTIKEM</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FE2lQbfEqdgSjywgLHlcE%2FLogotipo%2FFarmacia%20HyB%20-%20Agroequipos.jpg?alt=media&token=7e352316-abca-4c64-ab3b-606f0e9f4c8c" alt="FARMACIAS HYB"
+                                        class="logotipo_Equipo"></td>
+                                <td>FARMACIA HYB - AGROEQUIPOS</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2Ftbgt9772iRvh97hQ1q4q%2FLogotipo%2FEmpe%C3%B1a%20F%C3%A1cil.jpg?alt=media&token=58de712d-4253-472e-97bf-50a2cf8c32d7" alt="EMPEÑA FACIL"
+                                        class="logotipo_Equipo"></td>
+                                <td>EMPEÑA FACIL</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F0qsYTso7xenFceYNsQiW%2FLogotipo%2FRG%20Constructora.jpg?alt=media&token=914e7450-db0e-422f-9dfb-9f2c03176393" alt="RG CONSTRUCTORA"
+                                        class="logotipo_Equipo"></td>
+                                <td>RG CONSTRUCTORA</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FIAmyRmvrJI3IKeXMqa0D%2FLogotipo%2FDeportivo%20Chema%20Leal.jpg?alt=media&token=369d65a5-045d-43bd-9a64-7b27f84cf2b8" alt="DEPORTIVO CHEMA LEAL"
+                                        class="logotipo_Equipo"></td>
+                                <td>DEPORTIVO CHEMA LEAL</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F4NHqanahiABgeBMETsOV%2FLogotipo%2FAthleticos.png.jpg?alt=media&token=dbb3759f-6ae4-436e-8a0e-e5f0c805c948" alt="ATLETICOS" class="logotipo_Equipo"></td>
+                                <td>ATLETICOS</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FjPM9mDxSbpu8lvFg06xh%2FLogotipo%2FRebels.jpg?alt=media&token=ee015f22-0499-4552-9b3c-83a0da05711d" alt="REBELS" class="logotipo_Equipo"></td>
+                                <td>REBELS</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FJNOp29eOLvXTP0pk7qJD%2FLogotipo%2FPichihuilas.jpg?alt=media&token=b1e256bf-2d4a-4c4f-a4a7-477dd49787ff" alt="PICHIHUILAS" class="logotipo_Equipo"></td>
+                                <td>PICHIHUILAS</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="contenedor-puestaAvanzadaGrupoB" class="contenedorTabla">
+                    <table class="table table-striped-columns table-striped table-dark table-responsive">
+                        <thead class="cabezalModalidad">
+                            <tr>
+                                <th scope="col" class="tituloHeadModalidad" colspan="8">Puesta Avanzada <small> - Grupo
+                                        B</small></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">POS</th>
+                                <th scope="col"></th>
+                                <th scope="col">EQUIPOS</th>
+                                <th scope="col">JJ</th>
+                                <th scope="col">T</th>
+                                <th scope="col">D</th>
+                                <th scope="col">E</th>
+                                <th scope="col">PCT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FDN7OhcLRxGsNq90Ylnca%2FLogotipo%2FAgr%C3%ADcola%20Izaguirre.jpg?alt=media&token=9766a601-9c1e-4363-8728-78698ec1df95" alt="AGRICOLA IZAGUIRRE"
+                                        class="logotipo_Equipo"></td>
+                                <td>AGRICOLA IZAGUIRRE</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F7Zk2KwGzBcn1AkX45PNY%2FLogotipo%2FBarras%20y%20Tarros.jpg?alt=media&token=407082b8-d682-48fc-8374-aeb317aa99b3" alt="BARRAS Y TARROS"
+                                        class="logotipo_Equipo"></td>
+                                <td>BARRAS Y TARROS</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2Fj419tW4A9V3oPnlrDyQY%2FLogotipo%2FIndustriales.jpg?alt=media&token=74c0f00e-12f1-48b8-890d-c6b154800896" alt="INDUSTRIALES" class="logotipo_Equipo"></td>
+                                <td>INDUSTRIALES</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FDWaywTeN3BQzuJWUj8mc%2FLogotipo%2FPiratas.jpg?alt=media&token=78cff2d5-1ec7-4851-9f79-0f08c8d41aec" alt="LOS PIRATAS" class="logotipo_Equipo"></td>
+                                <td>LOS PIRATAS</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FW6dFsU5WMcFJJVOgOq3f%2FLogotipo%2FLobos%20UAD%20-%20Dep.%20Mingo%20Vazquez.jpg?alt=media&token=57c81a25-9f64-4ecc-ba81-d325d397f659"
+                                        alt="LOBOS UAD - DEPORTIVO MV" class="logotipo_Equipo"></td>
+                                <td>LOBOS UAD - DEPORTIVO MV</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FHlMCz5VkZE1EIQlimkUf%2FLogotipo%2FAcarreados.jpg?alt=media&token=7609eb9d-231c-47d2-a7d5-d122393f351c" alt="ACARREADOS" class="logotipo_Equipo"></td>
+                                <td>ACARREADOS</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FSfgOSMwsI8wlKXB0CXrs%2FLogotipo%2FDeportivo%20G%C3%A1mez.jpg?alt=media&token=784a4d33-9c9b-48f1-bbbb-116f3aa04e92" alt="DEPORTIVO GAMEZ"
+                                        class="logotipo_Equipo"></td>
+                                <td>DEPORTIVO GAMEZ</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FWfRtmOqPjqSxKP6PKYSS%2FLogotipo%2FRavens.jpg?alt=media&token=e7e4761c-7a06-46c8-a019-c4c6bbc4a963" alt="RAVENS" class="logotipo_Equipo"></td>
+                                <td>RAVENS</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FpOhTDQR38gCv12df90GH%2FLogotipo%2FUruz%20Paqueter%C3%ADa.jpg?alt=media&token=a7dc5a72-479f-40b6-86f1-02fb932b500e" alt="URUZ PAQUETERIA"
+                                        class="logotipo_Equipo"></td>
+                                <td>URUZ PAQUETERIA</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FAebDSfGo2PqYv1YzXAgL%2FLogotipo%2FFiscal%C3%ADa%20General%20de%20la%20Rep%C3%BAblica.jpg?alt=media&token=3a7f1c38-9887-455d-85f6-316495588c7a"
+                                        alt="FISCALÍA GENERAL DE LA REPUBLICA" class="logotipo_Equipo"></td>
+                                <td>FISCALÍA GENERAL DE LA REPUBLICA</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FLhKqyFrQZA4mQos0rQQK%2FLogotipo%2FSolitarios.jpg?alt=media&token=f1f7218a-d4b4-44e3-b5d1-396691bd83be" alt="SOLITARIOS" class="logotipo_Equipo"></td>
+                                <td>SOLITARIOS</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FOJs3HKRZ6TsiMuz75Xa0%2FLogotipo%2FAgr%C3%ADcola%20AYALA.jpg?alt=media&token=7ad28987-bbe2-4939-9dd8-f8a21f2515ad" alt="AGRICOLA AYALA"
+                                        class="logotipo_Equipo"></td>
+                                <td>AGRICOLA AYALA</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FczRSgQ0YtWzFRfC4x4Um%2FLogotipo%2FRockers%20Softbol%20Crew.jpg?alt=media&token=659484e4-084f-429b-a0a4-22e4ba870d9f" alt="ROCHERS SOFTBOL CREW"
+                                        class="logotipo_Equipo"></td>
+                                <td>ROCKERS SOFTBOL CREW</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FQYsPt9sbho0c6X4LLOTA%2FLogotipo%2FLa%20Tribu.jpg?alt=media&token=cd8a906f-1e2e-493b-b314-36c30dbf9423" alt="LA TRIBU" class="logotipo_Equipo"></td>
+                                <td>LA TRIBU</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="contenedor-puestaAvanzadaGrupoC" class="contenedorTabla">
+                    <table class="table table-striped-columns table-striped table-dark table-responsive">
+                        <thead class="cabezalModalidad">
+                            <tr>
+                                <th scope="col" class="tituloHeadModalidad" colspan="8">Puesta Avanzada <small> - Grupo
+                                        C</small></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">POS</th>
+                                <th scope="col"></th>
+                                <th scope="col">EQUIPOS</th>
+                                <th scope="col">JJ</th>
+                                <th scope="col">T</th>
+                                <th scope="col">D</th>
+                                <th scope="col">E</th>
+                                <th scope="col">PCT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FaotciTiR7sB8GD1XtMxT%2FLogotipo%2FAcuicola%20BANAMEI.jpg?alt=media&token=ef6ee2c4-ca1e-4cc7-ad93-3b5e52ee9cce" alt="ACUICOLA BANAMEI"
+                                        class="logotipo_Equipo"></td>
+                                <td>ACUICOLA BANAMEI</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FuEESePamiqigNz8UvBUa%2FLogotipo%2FBrujos.jpg?alt=media&token=b4828903-608b-4fd4-82fb-60d233158c66" alt="BRUJOS" class="logotipo_Equipo"></td>
+                                <td>BRUJOS</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FSl5xsYUtfA6UYZNNlwHU%2FLogotipo%2FChureas%20UAIM.jpg?alt=media&token=51d437c6-dd23-4b58-acf3-d42da15143a6" alt="CHUREAS - UAIM"
+                                        class="logotipo_Equipo"></td>
+                                <td>CHUREAS - UAIM</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2Fjo9UM9MzkyNsxSu7WyhY%2FLogotipo%2FCurtis.jpg?alt=media&token=db91271e-0a25-4f27-84d9-1fc72de23294" alt="CURTIS" class="logotipo_Equipo"></td>
+                                <td>CURTIS</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FaHCc2u3mISqiiGCB2glc%2FLogotipo%2FISHAT.jpeg?alt=media&token=5f598ffd-6305-4a37-b122-2e29fa2915ba" alt="ISHAT" class="logotipo_Equipo"></td>
+                                <td>ISHAT</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FZT91mZhUHPTMp4wcLAR0%2FLogotipo%2FCorn%20Boyond.jpg?alt=media&token=2f7dcfcf-2143-43d2-aa70-cc4310257f0b" alt="CORNBEYOND" class="logotipo_Equipo"></td>
+                                <td>CORNBEYOND</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FRzCX58qXtX2HrzmspCtb%2FLogotipo%2FDuvez%20Consultores%20-%20All%20Abordo.jpg?alt=media&token=afae1005-255d-4b7b-98c9-1ea28aa95361"
+                                        alt="DUVEZ - ALL ABORDO" class="logotipo_Equipo"></td>
+                                <td>DUVEZ - ALL ABORDO</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FOovZwYM5tB9wmAbBnBsj%2FLogotipo%2FBravos%20SNTSS.jpg?alt=media&token=a34eb533-2f24-4a46-8ac6-dc3f2062127e" alt="BRAVOS AAA" class="logotipo_Equipo"></td>
+                                <td>BRAVOS AAA</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FwshgWFOmpmVh7K86k6tP%2FLogotipo%2FCheleros%20Team%20Softbol%20-%2075%20Sport.jpg?alt=media&token=194b1cc5-59cc-4eb1-b848-4ac72f5840f6"
+                                        alt="CHELEROS TEAM SOFTBOL" class="logotipo_Equipo"></td>
+                                <td>CHELEROS TEAM SOFTBOL</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FPLrLfFV3JWdBfIqXEno7%2FLogotipo%2FPoder%20Judicial.jpg?alt=media&token=0f531a3b-fc7a-4565-bb9a-bbbeee55ea2b" alt="PODER JUDICIAL"
+                                        class="logotipo_Equipo"></td>
+                                <td>PODER JUDICIAL</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2Fy1PIPtDGJ8QmF9ypDAz5%2FLogotipo%2FSalitrosos.jpg?alt=media&token=5da1988e-0099-4744-983d-feee4c9071e5" alt="SALITROSOS" class="logotipo_Equipo"></td>
+                                <td>SALITROSOS</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FiAUPz70MzkdfY2vseQ2Z%2FLogotipo%2FArrochito%20KING.jpg?alt=media&token=34ceec80-9965-479a-a2d1-a509b2ef451c" alt="ARROCHITO KING"
+                                        class="logotipo_Equipo"></td>
+                                <td>ARROCHITO KING</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F6AfsEeZ4QUsEQOjxTJwT%2FLogotipo%2FDip.%20Ana%20Ayala.jpg?alt=media&token=c57cfa20-5fd6-446a-be7b-bff63b0a18a1" alt="DIPUTADA ANA AYALA"
+                                        class="logotipo_Equipo"></td>
+                                <td>DIPUTADA ANA AYALA</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F57kEPYcwkggpT9w9AmNz%2FLogotipo%2FUbiagro.jpg?alt=media&token=dd87fa85-ae9b-4bb6-a020-ee13493ba8ff" alt="UBIAGRO" class="logotipo_Equipo"></td>
+                                <td>UBIAGRO</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="contenedor-puestaAvanzadaGrupoD" class="contenedorTabla">
+                    <table class="table table-striped-columns table-striped table-dark table-responsive">
+                        <thead class="cabezalModalidad">
+                            <tr>
+                                <th scope="col" class="tituloHeadModalidad" colspan="8">Puesta Avanzada <small> - Grupo
+                                        D</small></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">POS</th>
+                                <th scope="col"></th>
+                                <th scope="col">EQUIPOS</th>
+                                <th scope="col">JJ</th>
+                                <th scope="col">T</th>
+                                <th scope="col">D</th>
+                                <th scope="col">E</th>
+                                <th scope="col">PCT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FkuX47aNFymzQC3NAh5Du%2FLogotipo%2FComercializadora%2030-Oct.jpeg?alt=media&token=e1babc78-426d-4509-8489-83e4085a56ec" alt="COMERCIALIZADORA 30-OCT"
+                                        class="logotipo_Equipo"></td>
+                                <td>COMERCIALIZADORA 30-OCT</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F1DSZj7cOMRxJw7Fxx1hc%2FLogotipo%2FService%20LM.jpg?alt=media&token=4e61cfa8-37a0-4b8b-9829-c9a465df7358" alt="TÓXICOS - SERVICES LM"
+                                        class="logotipo_Equipo"></td>
+                                <td>TÓXICOS - SERVICES LM</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FJLIrNwbjdcNC4WylD6AD%2FLogotipo%2FAgroMaster1.jpg?alt=media&token=f0900503-315e-400e-bf8c-2cb761996704" alt="AGROMASTER" class="logotipo_Equipo"></td>
+                                <td>AGROMASTER</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FxcK3Z2DgmvSKab9VKyd4%2FLogotipo%2FCortinas%20de%20Acero%20Sinaloa.jpg?alt=media&token=89068f3e-b47d-427c-807e-1abed2357ddb" alt="CORTINAS DE ACERO SINALOA"
+                                        class="logotipo_Equipo"></td>
+                                <td>CORTINAS DE ACERO SINALOA</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F9BvpgnzQZfwdnXIHI0jo%2FLogotipo%2FMINSA.jpg?alt=media&token=7e87cca1-f729-48f4-89ae-7c693c2cb82f" alt="MINSA" class="logotipo_Equipo"></td>
+                                <td>MINSA</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.750</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FyvQxhfkoiNOWQrFiruDe%2FLogotipo%2FLos%20Plomos.jpg?alt=media&token=c0097927-3582-4a32-95f9-5f2e3522a785" alt="LOS PLOMOS" class="logotipo_Equipo"></td>
+                                <td>LOS PLOMOS</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FQJ2mT8S5VSsiD0woJ3t0%2FLogotipo%2FCerveceros.jpg?alt=media&token=c4432ed0-5483-4186-a5f4-aedd93a0cca6" alt="CERVECEROS" class="logotipo_Equipo"></td>
+                                <td>CERVECEROS</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FutWLHSSzi9NYxXzrnMQ8%2FLogotipo%2FFAYSERNEW.jpeg?alt=media&token=76b80e0f-05a4-475b-9356-e1b844615ac0" alt="FAYSER" class="logotipo_Equipo"></td>
+                                <td>FAYSER</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FCpn2a2qGDNPYMkCUHujg%2FLogotipo%2FFundaci%C3%B3n%20GVL.jpg?alt=media&token=47349951-6ff9-4a21-b7c3-95ddf899bb7a" alt="FUNDACIÓN GVL"
+                                        class="logotipo_Equipo"></td>
+                                <td>FUNDACIÓN GVL</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F2DRnTcPwnFDoS7kEF8kd%2FLogotipo%2FBienes%20Ra%C3%ADces%20GyC.jpg?alt=media&token=84affca2-a9a0-4943-b7ca-2d473bd1b3f8" alt="BIENES Y RAICES GYC"
+                                        class="logotipo_Equipo"></td>
+                                <td>BIENES Y RAICES GYC</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FeeCeEVTP3RYnBdHxPBiS%2FLogotipo%2FVampiros.jpg?alt=media&token=b5fd8dfd-edc7-428a-a3a4-f9661ef8a300" alt="VAMPIROS" class="logotipo_Equipo"></td>
+                                <td>VAMPIROS</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0.250</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FFZgWi7sETpp7PLIN0ZFH%2FLogotipo%2FGrupo%20ESEL.jpg?alt=media&token=7141594a-3dbd-45a3-955a-54f42f425529" alt="GRUPO ESEL" class="logotipo_Equipo"></td>
+                                <td>GRUPO ESEL</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FfYPjWQ5kVyi1ay40VM76%2FLogotipo%2FPARTYLIGHT.jpeg?alt=media&token=a9609cd3-d8d3-4ab8-a280-b334629c5b9d" alt="PARTYLIGHT" class="logotipo_Equipo"></td>
+                                <td>PARTYLIGHT</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2F0p7yOoFabiqOit2LoiQ4%2FLogotipo%2FTERKOS.jpeg?alt=media&token=98050a03-e333-449d-819a-2e095018e497" alt="TERKOS" class="logotipo_Equipo"></td>
+                                <td>TERKOS</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">15</th>
+                                <td><img src="https://firebasestorage.googleapis.com/v0/b/softbolahome.appspot.com/o/Equipos%2FPbNs5qkGnkbwsRVAm2yH%2FLogotipo%2Fvilladental.jpeg?alt=media&token=1e3e52b6-4fe1-48ff-8a52-f516373e5c64" alt="VILLA DENTAL" class="logotipo_Equipo"></td>
+                                <td>VILLA DENTAL</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer id="liga-deportiva-footer" class="liga--footer"></footer>
+
+    <script src="/assets/js/liga-deportiva-nav.js"></script>
+    <script type="module" src="/assets/js/standings.js"></script>
+    <!-- <script type="module" src="/assets/js/rosters.js"></script> -->
+
+    <script>
+        document.getElementById('menu-liga').classList.add('activo');
+        document.getElementById('sidemenu-calendario').classList.add('activo');
+        let contenedorRapidaAvanzada = document.getElementById("contenedor-rapidaAvanzada");
+        let contenedorPuestaNovatos = document.getElementById("contenedor-puestaNovatos");
+        let contenedorPuestaAvanzada = document.getElementById("contenedor-puestaAvanzada");
+        let grupoA = document.getElementById("contenedor-puestaAvanzadaGrupoA");
+        let grupoB = document.getElementById("contenedor-puestaAvanzadaGrupoB");
+        let grupoC = document.getElementById("contenedor-puestaAvanzadaGrupoC");
+        let grupoD = document.getElementById("contenedor-puestaAvanzadaGrupoD");
+        let contenedorFiltro = document.getElementById("contenedorFiltroGrupo");
+
+        document.getElementById("selectGrupo").addEventListener("change", (e) => {
+            switch (e.target.value) {
+                case "":
+                    grupoA.classList.remove("oculto");
+                    grupoB.classList.remove("oculto");
+                    grupoC.classList.remove("oculto");
+                    grupoD.classList.remove("oculto");
+
+
+                    grupoB.classList.add("contenedorTabla");
+                    grupoC.classList.add("contenedorTabla");
+                    grupoD.classList.add("contenedorTabla");
+                    break;
+
+                case "A":
+                    grupoA.classList.remove("oculto");
+                    grupoB.classList.add("oculto");
+                    grupoC.classList.add("oculto");
+                    grupoD.classList.add("oculto");
+                    break;
+
+                case "B":
+                    grupoA.classList.add("oculto");
+                    grupoB.classList.remove("oculto");
+                    grupoC.classList.add("oculto");
+                    grupoD.classList.add("oculto");
+
+                    grupoB.classList.remove("contenedorTabla");
+                    break;
+
+                case "C":
+                    grupoA.classList.add("oculto");
+                    grupoB.classList.add("oculto");
+                    grupoC.classList.remove("oculto");
+                    grupoD.classList.add("oculto");
+
+                    grupoC.classList.remove("contenedorTabla");
+                    break;
+
+                case "D":
+                    grupoA.classList.add("oculto");
+                    grupoB.classList.add("oculto");
+                    grupoC.classList.add("oculto");
+                    grupoD.classList.remove("oculto");
+
+                    grupoD.classList.remove("contenedorTabla");
+                    break;
+            }
+        });
+
+        const cambiarModalidad = (e, modo = 0) => {
+            for (let i = 0; i < document.getElementById("grupoModalidad").children.length; i++) {
+                document.getElementById("grupoModalidad").children[i].classList.remove("active")
+            }
+            e.classList.add("active");
+
+            switch (modo) {
+                case 0:
+                    document.getElementById("selectGrupo").selectedIndex = 0;
+                    contenedorRapidaAvanzada.classList.remove("oculto");
+                    contenedorPuestaNovatos.classList.remove("oculto");
+                    contenedorPuestaAvanzada.classList.remove("oculto");
+                    contenedorPuestaNovatos.classList.add("contenedorTabla");
+                    grupoA.classList.add("contenedorTabla");
+                    grupoA.classList.remove("oculto");
+                    grupoB.classList.remove("oculto");
+                    grupoC.classList.remove("oculto");
+                    grupoD.classList.remove("oculto");
+                    grupoB.classList.add("contenedorTabla");
+                    grupoC.classList.add("contenedorTabla");
+                    grupoD.classList.add("contenedorTabla");
+                    contenedorFiltro.classList.add("oculto");
+                    break;
+
+                case 1:
+                    document.getElementById("selectGrupo").selectedIndex = 0;
+                    contenedorRapidaAvanzada.classList.remove("oculto");
+                    contenedorPuestaNovatos.classList.add("oculto");
+
+                    contenedorPuestaAvanzada.classList.add("oculto");
+                    grupoA.classList.add("oculto");
+                    grupoB.classList.add("oculto");
+                    grupoC.classList.add("oculto");
+                    grupoD.classList.add("oculto");
+                    grupoB.classList.add("contenedorTabla");
+                    grupoC.classList.add("contenedorTabla");
+                    grupoD.classList.add("contenedorTabla");
+                    contenedorFiltro.classList.add("oculto");
+                    break;
+
+                case 2:
+                    document.getElementById("selectGrupo").selectedIndex = 0;
+                    contenedorRapidaAvanzada.classList.add("oculto");
+                    contenedorPuestaNovatos.classList.remove("oculto");
+                    contenedorPuestaNovatos.classList.remove("contenedorTabla");
+                    contenedorPuestaAvanzada.classList.add("oculto");
+                    grupoA.classList.add("oculto");
+                    grupoB.classList.add("oculto");
+                    grupoC.classList.add("oculto");
+                    grupoD.classList.add("oculto");
+                    grupoB.classList.add("contenedorTabla");
+                    grupoC.classList.add("contenedorTabla");
+                    grupoD.classList.add("contenedorTabla");
+                    contenedorFiltro.classList.add("oculto");
+                    break;
+
+                case 3:
+                    document.getElementById("selectGrupo").selectedIndex = 0;
+                    contenedorRapidaAvanzada.classList.add("oculto");
+                    contenedorPuestaNovatos.classList.add("oculto");
+                    contenedorPuestaAvanzada.classList.remove("oculto");
+                    grupoA.classList.remove("contenedorTabla");
+                    grupoA.classList.remove("oculto");
+                    grupoB.classList.remove("oculto");
+                    grupoC.classList.remove("oculto");
+                    grupoD.classList.remove("oculto");
+                    grupoB.classList.add("contenedorTabla");
+                    grupoC.classList.add("contenedorTabla");
+                    grupoD.classList.add("contenedorTabla");
+                    contenedorFiltro.classList.remove("oculto");
+                    break;
+
+            }
+        }
+
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

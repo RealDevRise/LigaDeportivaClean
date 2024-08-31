@@ -1,0 +1,112 @@
+.hide {
+    display: none;
+}
+
+.btn:hover {
+    color: #dfdfdf;
+}
+
+.helperTooltip {
+    text-decoration: none;
+    color: var(--light);
+}
+
+.helperTooltip:hover {
+    color: var(--light);
+}
+
+.clearBtn {
+    background: none;
+    background-color: transparent;
+    border: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.btnActivo {
+    color: var(--primary);
+}
+
+#contenedor-filtros {
+    margin-top: 1rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.btnFiltro {
+    border: 1px solid #505050;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    border-radius: 7px;
+    margin-right: 0.45rem;
+}
+
+#contenedor-filtros .btnFiltro {
+    font-size: 0.9rem;
+    margin-right: 0;
+}
+
+#contenedor-seleccion-rol {
+    margin-top: 0.5rem;
+}
+
+#contenedor-seleccion-rol .clearBtn {
+    font-size: 1.15rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+.rolActivo {
+    border-bottom: 2px solid var(--primary);
+}
+
+#titulo-seccion {
+    font-size: 1.8rem;
+}
+
+.separador-hr {
+    margin: 0 0 1rem 0;
+}
+
+#contenedor-tablas {
+    margin-top: 2rem;
+}
+
+#tabla-mobile {
+    display: block;
+}
+
+#tabla-pc {
+    display: none;
+}
+
+#contenedor-cargar-contenido {
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor-cargar-contenido button {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: var(--primary);
+    color: #222;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #tabla-mobile {
+        display: none;
+    }
+    #tabla-pc {
+        display: block;
+    }
+    #contenedor-cargar-contenido button {
+        width: 12rem;
+    }
+}

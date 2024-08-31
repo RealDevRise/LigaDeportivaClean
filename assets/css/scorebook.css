@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,700;1,300;1,500&display=swap');
+body {
+    font-family: 'Archivo', sans-serif !important;
+    overflow-y: auto !important;
+    background-color: #efefef;
+}
+
+.form-size {
+    /* width: 65px; */
+    width: 100%;
+}
+
+.align-tbody {
+    vertical-align: middle !important;
+}
+
+.styleHT {
+    width: 100px;
+    font-weight: bold;
+}
+
+#wrapperSeleccionEquipo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.headerCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toastPlacement {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

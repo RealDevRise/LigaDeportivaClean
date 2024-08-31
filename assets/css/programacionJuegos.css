@@ -1,0 +1,19 @@
+.versus {
+    text-align: center;
+    vertical-align: middle !important;
+    font-weight: bold;
+}
+
+.header-categoria {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.label-categoria {
+    margin-right: 10px;
+}
+
+.select-categoria {
+    width: 20rem;
+}

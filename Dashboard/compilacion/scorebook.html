@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/319ba68859.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/scorebook.css">
+    <link rel="stylesheet" href="/assets/css/liga-deportiva-dashboard.css">
+    <title>Scorebook - Comité Municipal de Softbol de Ahome</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../Principal.html">Principal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Noticias.html">Noticias</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Calendario.html">Calendario</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Temporadas.html">Temporadas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Categorias.html">Categorías</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Equipos.html">Equipos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Personas.html">Personas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Grupos.html">Grupos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../ProgramacionJuegos.html">Programación de juegos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../Compilacion.html">Compilación</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Campos.html">Campos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Patrocinadores.html">Patrocinadores</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <div id="wrapperForm">
+            <div class="pt-2 pb-2">
+                <h2>Registro de Compilación</h2>
+            </div>
+
+            <form method="POST" id="ld_formulario">
+
+
+
+                <div id="wrapperDatosGenerales">
+                    <table class="table table-light table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span>Temporada:</span>
+                                            <p id="label_temporada"></p>
+                                        </div>
+
+                                        <div class="col">
+                                            <span>Categoría:</span>
+                                            <p id="label_categoria"></p>
+                                        </div>
+
+                                        <div class="col">
+                                            <span>Juego:</span>
+                                            <p id="label_juego"></p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row pb-3 oculto">
+                                        <div class="col">
+                                            <span>Título de la compilación:</span>
+                                            <!-- <input type="text" class="form-control" id="input_titulo" placeholder="Título de la compilación" required> -->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row oculto">
+                                        <div class="col">
+                                            <span>Programación:</span>
+                                            <!-- <select id="selectProgramacion" class="form-select" required>
+                                                <option value="" disabled selected>Seleccionar Programación...</option>
+                                              </select> -->
+                                        </div>
+
+                                        <div class="col">
+                                            <span>Categoría:</span>
+                                            <!-- <select id="selectCategoria" class="form-select" required>
+                                                <option value="" disabled selected>Seleccionar categoría...</option>
+                                              </select> -->
+                                        </div>
+
+                                        <div class="col">
+                                            <span>Juego:</span>
+                                            <!-- <select id="selectJuego" class="form-select" required>
+                                                <option value="" disabled selected>Seleccionar juego...</option>
+                                              </select> -->
+                                        </div>
+
+                                    </div>
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div id="wrapperSeleccionEquipo"></div>
+
+
+                <div id="wrapperscorebook" class="oculto">
+
+                    <div id="wrapperToolbarScorebook">
+                        <table class="table table-light table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <button type="button" id="btn_scorebookRegresar" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Regresar</button>
+                                                <button type="button" id="btn_scorebookGuardar" class="btn btnDashboard btnDashboard-primary">Guardar</button>
+                                            </div>
+                                        </div>
+
+                                    </th>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div id="wrapperBateo">
+                        <h2>Bateo</h2>
+                        <table id="table-bateo" class="table table-light table-striped table-bordered">
+                            <thead>
+                                <tr id="rowHeader">
+                                    <th style="width:3rem;" scope="col">#</th>
+                                    <th style="width: 20rem;" scope="col">Nombre del Jugador</th>
+                                    <th scope="col">JJ</th>
+                                    <th scope="col">TT</th>
+                                    <th scope="col">TL</th>
+                                    <th scope="col">HT</th>
+                                    <th scope="col">H1</th>
+                                    <th scope="col">H2</th>
+                                    <th scope="col">H3</th>
+                                    <th scope="col">H4</th>
+                                    <th scope="col">HR</th>
+                                    <th scope="col">RUNS</th>
+                                    <th scope="col">B.O.</th>
+                                    <th scope="col">G</th>
+                                    <th scope="col">S</th>
+                                    <th scope="col">B.B.</th>
+                                    <th scope="col">K</th>
+                                    <th scope="col">AVG.</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbody-bateo" class="align-tbody">
+                                <!-- <tr id="rowControlAgregarJugadorBateo">
+                                    <td colspan="2"><button type="button" style="width: 100%;" class="btn btnDashboard btnDashboard-primary" id="btnAgregarJugador">Añadir jugador</button></td>
+                                </tr>
+                                <tr id="totalBateo">
+                                    <td colspan="2" style="width: 100px; font-weight: bold; text-align: center;"><span>TOTALES</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoJJ">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoTT">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoTL">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoHT">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoH1">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoH2">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoH3">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoH4">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoHR">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoRuns">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoBO">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoG">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoS">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoBB">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoK">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalBateoAVG">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                    <div id="wrapperPitcheo" class="pt-4">
+                        <h2>Pitcheo</h2>
+                        <table id="table-pitcheo" class="table table-light table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 2.5rem;" scope="col">#</th>
+                                    <th style="width: 15.2rem;" scope="col">Nombre del Jugador</th>
+                                    <th scope="col">JJ</th>
+                                    <th scope="col">W</th>
+                                    <th scope="col">L</th>
+                                    <th scope="col">IP</th>
+                                    <th scope="col">BT</th>
+                                    <th scope="col">HT</th>
+                                    <th scope="col">HR</th>
+                                    <th scope="col">BB</th>
+                                    <th scope="col">K</th>
+                                    <th scope="col">G</th>
+                                    <th scope="col">CP</th>
+                                    <th scope="col">CL</th>
+                                    <th scope="col">ERA</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbody-pitcheo" class="align-tbody">
+                                <!-- <tr>
+                                    <td><span>0</span></td>
+                                    <td><select class="form-select"><option value="" disabled selected>Seleccionar jugador...</option></select></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td><input type="text" class="form-control form-size" value="0"></td>
+                                    <td class="styleHT"><span>0</span></td>
+                                    <td class="styleHT"><button type="button" style="width: 100%;" class="btn btnDashboard btn-danger"></button></td>
+                                </tr> -->
+
+                                <!-- <tr id="rowControlAgregarJugadorPitcheo">
+                                    <td style="width: 100px;" colspan="2"><button type="button" style="width: 100%;" class="btn btnDashboard btnDashboard-primary" id="btnAgregarJugadorPitcheo">Añadir jugador</button></td>
+                                </tr>
+    
+                                <tr id="totalPitcheo">
+                                    <td colspan="2" style="width: 100px; font-weight: bold; text-align: center;"><span>TOTALES</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoJJ">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoW">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoL">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoIP">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoBT">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoHT">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoHR">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoBB">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoK">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoG">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoCP">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoCL">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"><span id="totalPitcheoERA">0</span></td>
+                                    <td style="width: 100px; font-weight: bold;"></td>
+                                </tr> -->
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div id="wrapperControlFormulario" class="pt-2">
+                    <div class="row">
+                        <div class="col" style="display:flex; justify-content: flex-end;">
+                            <button type="button" id="btn_salirScorebook" class="btn btnDashboard btnDashboard-transparent" style="margin-right:8px;">Regresar</button>
+                            <button type="submit" id="btn_submitScorebook" class="btn btnDashboard btnDashboard-primary">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script type="module" src="/assets/js/scorebook.js"></script>
+
+</body>
+
+</html>
