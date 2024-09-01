@@ -18,12 +18,12 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-//actualizar.addEventListener('click', () => {
+// actualizar.addEventListener('click', () => {
 //    updateProfile(auth.currentUser, {
-//        displayName: "Carlos Leyva"
+//        displayName: "Developer"
 //    }).then(() => {
 //        console.log("Perfil Actualizado");
 //    }).catch((error) => {
 //        console.log("Error");
 //    })
-//});
+// });

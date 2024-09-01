@@ -4,7 +4,7 @@ const navbar_menu = document.getElementById("navbar-dashboard");
 sidebar_menu.innerHTML = `
 <div class="logo">
 <a href="/Dashboard/Principal.html">
-    <img src="/assets/img/Logo CMSA.png" alt="Comité Municipal de Softbol de Ahome">
+    <img src="/assets/img/liga de ahome.png" alt="Liga Municipal de Ahome">
 </a>
 </div>
 <div class="menu">

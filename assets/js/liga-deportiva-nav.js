@@ -1,8 +1,8 @@
 const nav = document.getElementById('liga-deportiva-nav');
 const sidebar = document.getElementById('sidenav-menu');
 const footer = document.getElementById('liga-deportiva-footer');
-const nombreSitio = "Comité Municipal de Softbol de Ahome";
-const fileLogo = "Logo CMSA.png";
+const nombreSitio = "Liga Municipal de Ahome";
+const fileLogo = "liga de ahome.png";
 
 nav.innerHTML = `
     <div class="container-menu">
@@ -24,29 +24,13 @@ nav.innerHTML = `
                     <a href="/liga/rosters.html">Roster de equipos</a>
                     <a href="/liga/posiciones.html">Standing</a>
 
-                    <button class="dropdown-btn">Recursos
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="/assets/pdf/Formato de Protesta - CMSA.pdf" target="_blank">Formato de Protesta</a>
-                    </div>
+                    
                 </div>
             </div>
             
             <a href="/calendario.html" id='menu-calendario'>Calendario</a>
 
-            <div class="dropdownd">
-                <button id='menu-liga' class="dropbtn">Torneo 2023
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=8df10d6d-6d2b-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Master</a>
-                    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=b82fd4b1-6d2b-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Super Master</a>
-                    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=c94653ce-6d2c-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Mayores</a>
-                    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=5f713076-6d2d-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Decanos</a>
-                    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=48516853-6d2e-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Super Decanos</a>
-                </div>
-            </div>
+            
             
             <a href="#" id='menu-acerca'>Acerca de</a>
             
@@ -74,20 +58,11 @@ sidebar.innerHTML = `
         <a href="/liga/estadisticas.html">Estadísticas</a>
         <a href="/liga/rosters.html">Roster de Equipos</a>
         <a href="/liga/posiciones.html">Standing</a>
-        <a href="/assets/pdf/Formato de Protesta - CMSA.pdf" target="_blank">Formato de Protesta</a>
+        
     </div>
     
     <a href="/calendario.html" id='sidemenu-calendario'>Calendario</a>
-    <button class="dropdown-btn">Torneo 2023
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=8df10d6d-6d2b-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Master</a>
-    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=b82fd4b1-6d2b-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Super Master</a>
-    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=c94653ce-6d2c-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Mayores</a>
-    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=5f713076-6d2d-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Decanos</a>
-    <a href="https://sportwey.com/site/tournament?token=HOQH3G3&tournament=48516853-6d2e-11ee-abd0-0a2bbad5892d&header=false&footer=false&title=true" target="_blank" >Categoría Super Decanos</a>
-    </div>
+    
     <a href="#" id='sidemenu-acerca'>Acerca de</a>
     
 `;

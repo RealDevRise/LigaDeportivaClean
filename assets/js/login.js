@@ -50,7 +50,7 @@
           .then((userCredential) => {
               // Signed in 
               //   console.log(userCredential.user.uid);
-              window.location.replace('/Dashboard/Principal.html');
+              window.location.replace('/Dashboard/Noticias.html');
           })
           .catch((error) => {
               const errorCode = error.code;
@@ -61,7 +61,7 @@
 
   onAuthStateChanged(auth, (user) => {
       if (user) {
-          window.location.replace('Dashboard/Principal.html');
+          window.location.replace('Dashboard/Noticias.html');
       }
   });
 
